@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "BraintreeCore.h"
 
 @interface AppDelegate ()
 
@@ -16,13 +17,18 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    [BTAppSwitch setReturnURLScheme:@"OKAppz.Drop-In-UI-with-Pods.payments"];
     return YES;
 }
 
-- (void)applicationWillResignActive:(UIApplication *)application {
-    // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-    // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation {
+    if ([url.scheme localizedCaseInsensitiveCompare:@"OKAppz.Drop-In-UI-with-Pods.payments"] == NSOrderedSame) {
+        return [BTAppSwitch handleOpenURL:url sourceApplication:sourceApplication];
+    }
+    return NO;
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
