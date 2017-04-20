@@ -63,7 +63,7 @@ NSString *resultCheck;
     
     dropInViewController.delegate = self;
     dropInViewController.paymentRequest = paymentRequest;
-    dropInViewController.title = @"Your customer Drop-In title";
+    dropInViewController.title = @"Your custom Drop-In title";
     
     // This is where you might want to customize your view controller (see below)
     
