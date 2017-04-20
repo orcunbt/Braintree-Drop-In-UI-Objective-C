@@ -48,10 +48,22 @@ NSString *resultCheck;
 
 
 - (IBAction)buyAction:(id)sender {
+    
+    BTPaymentRequest *paymentRequest = [[BTPaymentRequest alloc] init];
+    paymentRequest.summaryTitle = @"Test item title";
+    paymentRequest.summaryDescription = @"This is a summary description";
+    paymentRequest.displayAmount = @"$19.00";
+    paymentRequest.callToActionText = @"$19 - Pay Now";
+    paymentRequest.shouldHideCallToAction = NO;
+    
+
     // Create a BTDropInViewController
     BTDropInViewController *dropInViewController = [[BTDropInViewController alloc]
                                                     initWithAPIClient:self.braintreeClient];
+    
     dropInViewController.delegate = self;
+    dropInViewController.paymentRequest = paymentRequest;
+    dropInViewController.title = @"Your customer Drop-In title";
     
     // This is where you might want to customize your view controller (see below)
     
